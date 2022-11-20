@@ -1,0 +1,20 @@
+name: Deploy to Firebase Hosting
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
+jobs:
+  build_and_deploy:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@ff6e7dde58a4f7f1db590927596bf683250c6cc8
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEARNING_6535C }}'
+          channelId: "live"
+          projectId: learning-6535c
+          target: real-time-chat-jc
