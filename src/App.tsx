@@ -9,7 +9,7 @@ import { getPic } from './utils/img';
 
 
 function App() {
-  const [year] = React.useState(new Date().getFullYear());
+  
   const [connection, setConnection] = React.useState<HubConnection>();
   const [users, setUsers] = React.useState<Dict<User>>({});
   const [user, setUser] = React.useState("");
@@ -60,7 +60,7 @@ function App() {
 
   const onRequestedPublicKey = React.useCallback(async (interaction: Interaction) => {
     await connection?.send('SendPublicKey', interaction.fromUser, publicKey)
-  }, [users, publicKey, connection]);
+  }, [publicKey, connection]);
 
   const onReceivedPublicKey = React.useCallback(async (publicKeyInteraction: PublicKeyInteraction) => {
     try {
@@ -138,7 +138,7 @@ function App() {
         connection.off('ReceivedMessage');
       }
     }
-  }, [connection, user, onListUsers, onRequestedPublicKey, onReceivedPublicKey, onReceivedPublicKey])
+  }, [connection, user, onListUsers, onRequestedPublicKey, onReceivedPublicKey, onReceivedPublicKey, onReceivedMessage ])
 
   const isNavigationActive = ({ isActive }: { isActive: boolean }) => `app-navigation-item ${isActive ? 'selected' : ''}`;
 
