@@ -138,7 +138,7 @@ function App() {
         connection.off('ReceivedMessage');
       }
     }
-  }, [connection, user, onListUsers, onRequestedPublicKey, onReceivedPublicKey, onReceivedPublicKey, onReceivedMessage ])
+  }, [connection, user, onListUsers, onRequestedPublicKey, onReceivedPublicKey, onReceivedMessage ])
 
   const isNavigationActive = ({ isActive }: { isActive: boolean }) => `app-navigation-item ${isActive ? 'selected' : ''}`;
 
