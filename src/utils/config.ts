@@ -1,4 +1,4 @@
 export const servicesConfig = {
-    chatHub: "https://localhost:7098/chat",
+    chatHub: "https://real-time-chat-jc.onrender.com/chat",
     avatars: "https://avatars.jusemon.com"
 }
